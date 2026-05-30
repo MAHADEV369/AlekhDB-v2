@@ -1,0 +1,22 @@
+# AlekhDB Agentic Developer Rules & Specs
+
+You are working in the **AlekhDB** codebase (a high-performance, local-first GraphRAG memory engine and Truth Maintenance System for AI agents).
+
+## Repository Map & Architecture
+* **`alekhdb.js`**: Core cognitive engine (Ebbinghaus forgetting, Doyle TMS, spaced repetition, AST parsing).
+* **`cli.js`**: CLI client projecting memory onto virtual POSIX pathways (`/memory/`).
+* **`api.js`**: REST Express API Gateway hosting endpoints for ingestion, search, and traces.
+* **`multimodal.py`**: Python FastAPI microservice for Whisper, Tesseract OCR, and Leiden community clustering.
+
+## Implementation Guidelines
+1. **Zero Runtime Dependencies**: Do NOT install any third-party dependencies for the Option 1 core SDK. Keep it light, private, and compile-free.
+2. **Permanent Exemption**: Node types `file`, `class`, `function`, and `community-summary` are permanently exempt from Ebbinghaus decay.
+3. **Database Handshake**: Always persist to `alekhdb_db.json`. If `alekhdb_db.json` is missing, check for legacy `supermemory_db.json` and load it for seamless backward compatibility.
+4. **Backward Compatibility Alias**: Always maintain the class alias `export const Supermemory = AlekhDB;` to avoid breaking legacy integrations.
+
+## Onboarding Commands
+* Setup Environment: `npm install`
+* Seed database: `npm run seed`
+* Run benchmarks: `npm test`
+* Live stress-test: `npm run test:stress`
+* Start Express REST Gateway: `npm run api`

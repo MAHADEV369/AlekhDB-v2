@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  alekhdb-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: alekhdb-core-api
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - PORT=3000
+      - MULTIMODAL_URL=http://alekhdb-multimodal:8000
+    depends_on:
+      - alekhdb-multimodal
+    restart: always
+
+  alekhdb-multimodal:
+    build:
+      context: .
+      dockerfile: Dockerfile.multimodal
+    container_name: alekhdb-multimodal-service
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    restart: always
+
+networks:
+  default:
+    name: alekhdb-network

@@ -1,0 +1,10 @@
+node_modules/
+alekhdb_db.json
+supermemory_db.json
+.env
+.env.local
+*.log
+.DS_Store
+__pycache__/
+*.pyc
+.system_generated/

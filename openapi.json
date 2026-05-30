@@ -1,0 +1,301 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "AlekhDB API Gateway",
+    "description": "REST API Gateway for AlekhDB, a high-performance, local-first GraphRAG memory engine and Doyle-style Truth Maintenance System for autonomous AI agents.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local Development API Server"
+    }
+  ],
+  "paths": {
+    "/api/ingest": {
+      "post": {
+        "summary": "Ingest Memory / Parse URL",
+        "description": "Ingests raw text statement or parses a web URL using GraphRAG and Doyle TMS conflict auditing. Automatically registers entities and relations.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["text"],
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "description": "The raw fact statement to ingest, or a fully qualified URL (starts with http/https) to parse."
+                  },
+                  "scope": {
+                    "type": "string",
+                    "default": "work",
+                    "description": "Logical multi-tenant isolation scope (e.g. personal, work, legal)."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully ingested memory and revised active beliefs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "docId": { "type": "string" },
+                    "nodes": { "type": "array", "items": { "type": "string" } },
+                    "edges": { "type": "array", "items": { "type": "string" } },
+                    "conflict": { "type": "string", "nullable": true },
+                    "prunedCount": { "type": "integer" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/search": {
+      "get": {
+        "summary": "GraphRAG Hybrid Search",
+        "description": "Performs GraphRAG hybrid retrieval (keyword sweeps + 2-degree neighborhood traversals) and generates synthesized Markdown answers.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "The natural language query or concept search term."
+          },
+          {
+            "name": "scope",
+            "in": "query",
+            "schema": { "type": "string", "default": "all" },
+            "description": "Multi-tenant scope to filter the search graph."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GraphRAG search results and markdown synthesis completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "synthesis": { "type": "string" },
+                    "matchedNodeIds": { "type": "array", "items": { "type": "string" } },
+                    "traversedNodeIds": { "type": "array", "items": { "type": "string" } }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/profile": {
+      "get": {
+        "summary": "Synthesize User Profile",
+        "description": "Generates a cohesive, real-time Markdown dossier summarizing the developer/project's active context, stable preferences, and compaction histories.",
+        "responses": {
+          "200": {
+            "description": "Markdown profile generated successfully.",
+            "content": {
+              "text/markdown": {
+                "schema": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/traces": {
+      "get": {
+        "summary": "List Traces",
+        "description": "Returns a list of all active, finalized, and quarantined episodic execution traces in-memory.",
+        "responses": {
+          "200": {
+            "description": "Chronological trace indices returned successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "traceId": { "type": "string" },
+                      "agentId": { "type": "string" },
+                      "sessionId": { "type": "string" },
+                      "taskId": { "type": "string" },
+                      "status": { "type": "string" },
+                      "outcome": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trace/start": {
+      "post": {
+        "summary": "Start Episodic Trace",
+        "description": "Starts recording a new structured episodic execution trace (flight recorder) for the agent.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["traceId", "agentId", "sessionId", "taskId"],
+                "properties": {
+                  "traceId": { "type": "string" },
+                  "agentId": { "type": "string" },
+                  "sessionId": { "type": "string" },
+                  "taskId": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Episodic trace successfully initialized."
+          }
+        }
+      }
+    },
+    "/api/trace/{traceId}/append": {
+      "post": {
+        "summary": "Append Trace Event Frame",
+        "description": "Appends a single chronological execution step (tool call, results, errors, snapshots) to an open trace.",
+        "parameters": [
+          {
+            "name": "traceId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "toolCallJson": { "type": "object" },
+                  "toolResultJson": { "type": "object" },
+                  "stateSnapshotJson": { "type": "object" },
+                  "errorSignature": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Chronological frame successfully appended."
+          }
+        }
+      }
+    },
+    "/api/trace/{traceId}/finalize": {
+      "post": {
+        "summary": "Finalize Trace",
+        "description": "Finalizes the episodic trace, setting its status to 'finalized' and locking its outcome (success/failure).",
+        "parameters": [
+          {
+            "name": "traceId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["outcome"],
+                "properties": {
+                  "outcome": { "type": "string", "enum": ["success", "failure"] },
+                  "summaryJson": { "type": "object" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Trace successfully finalized and serialized to local database."
+          }
+        }
+      }
+    },
+    "/api/trace/{traceId}/replay": {
+      "get": {
+        "summary": "Replay Trace Steps",
+        "description": "Returns the chronological step sequence (event frames) of a specific trace for post-mortem debugging.",
+        "parameters": [
+          {
+            "name": "traceId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ordered execution frames returned successfully."
+          }
+        }
+      }
+    },
+    "/api/trace/{traceId}/ingest": {
+      "post": {
+        "summary": "Ingest Trace as Semantic Beliefs",
+        "description": "Triggers the Cognitive Ingestion Bridge: translates execution event frames into natural language, audits contradictions, and bridges insights into semantic graph nodes connected by 'derived_from_trace' edges.",
+        "parameters": [
+          {
+            "name": "traceId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully ingested failed trace and generated derived belief structures."
+          }
+        }
+      }
+    },
+    "/api/trace/{traceId}/quarantine": {
+      "post": {
+        "summary": "Quarantine Trace",
+        "description": "Locks the specific trace with a quarantined flag, preventing accidental automatic ingestion until manually reviewed.",
+        "parameters": [
+          {
+            "name": "traceId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Trace successfully locked and quarantined."
+          }
+        }
+      }
+    }
+  }
+}

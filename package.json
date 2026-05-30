@@ -1,0 +1,56 @@
+{
+  "name": "alekhdb-core",
+  "version": "1.0.0",
+  "description": "Core open-source repository for AlekhDB lightweight, self-editing biological GraphRAG and agent POSIX episodic shell memory.",
+  "type": "module",
+  "main": "alekhdb.js",
+  "bin": {
+    "alekhdb": "./cli.js"
+  },
+  "scripts": {
+    "start": "node cli.js",
+    "seed": "node cli.js seed",
+    "api": "node api.js",
+    "doctor": "node doctor.js",
+    "test": "node test_runner.js",
+    "test:stress": "node extreme_stress_test.js",
+    "test:elite": "node elite_test.js",
+    "test:compaction": "node test_autonomous_compaction.js",
+    "test:commercial": "node commercial_case_study.js",
+    "test:option2": "node test_option2_gemini.js",
+    "test:all": "node test_runner.js && node elite_test.js && node extreme_stress_test.js && node test_autonomous_compaction.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trident/alekhdb.git"
+  },
+  "bugs": {
+    "url": "https://github.com/trident/alekhdb/issues"
+  },
+  "homepage": "https://github.com/trident/alekhdb#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "alekhdb.js",
+    "cli.js",
+    "api.js",
+    "sampleData.js"
+  ],
+  "keywords": [
+    "graphrag",
+    "ai-agent",
+    "memory",
+    "posix-mount",
+    "obsidian"
+  ],
+  "author": "Antigravity & Trident",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "pdf-parse": "^2.4.5",
+    "express": "^4.19.2",
+    "cors": "^2.8.5",
+    "multer": "^1.4.5-lts.1"
+  }
+}

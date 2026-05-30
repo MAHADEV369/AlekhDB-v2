@@ -1,0 +1,8 @@
+node_modules/
+.git/
+*.md
+alekhdb_db.json
+supermemory_db.json
+.env
+.env.local
+.system_generated/
