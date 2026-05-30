@@ -14,6 +14,7 @@
 
 Traditional vector databases store flat, append-only embeddings lists. They suffer from **Context Rot**, lack **Relational Topology**, and have **Zero Cognitive Capabilities** to handle logical contradictions. AlekhDB engineers a **biological, self-editing AI memory layer** equipped with exponential Ebbinghaus attention curves, Doyle-style truth maintenance systems (TMS), AST-aware codebase mapping, chronological action tracing, and a zero-dependency virtual POSIX filesystem mount.
 
+https://alekhdb.lovable.app/
 ---
 
 ![AlekhDB Neural Brain Active Senses](alekhdb_brain_neurons.gif)
