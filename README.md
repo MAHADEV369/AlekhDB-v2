@@ -192,6 +192,22 @@ Full report: `benchmarks/01-ide-monorepo/reports/04-ranking.md`. Re-run anytime 
 
 ---
 
+## Research Paper
+
+A research paper based on this codebase is in progress:
+
+**"AlekhDB: Biological-Inspired, Local-First Memory for Long-Horizon AI Agents"** (target venue: AAAI 2027)
+
+- `paper/paper.md` and `paper/paper.tex` — full paper draft
+- `paper/figures/` — 5 publication-quality figures
+- `paper/tables/` — 6 data tables (CSV)
+- `paper/agent-task/` — long-horizon agent task, ablation, cognitive study
+- `paper/scripts/` — scaling benchmark, statistical trials, figure generation
+- `paper/README.md` — reproducibility guide
+- `arxiv-submission/` — ready-to-upload arXiv package
+
+Headline results: AlekhDB 87.3/100 vs Supermemory 63.9, Letta 52.9, Mem0 41.7, Zep 40.8 on the 5-backend benchmark. 8/9 unique capabilities show drop=1 when ablated. Ebbinghaus decay achieves 100% recall vs uniform TTL 24% on long-horizon retrieval.
+
 ## License
 
 AlekhDB v2 is open-source software licensed under the [MIT License](LICENSE).
