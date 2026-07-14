@@ -1,7 +1,7 @@
 {
-  "name": "alekhdb-core",
-  "version": "1.0.0",
-  "description": "Core open-source repository for AlekhDB lightweight, self-editing biological GraphRAG and agent POSIX episodic shell memory.",
+  "name": "alekhdb-v2",
+  "version": "2.1.0",
+  "description": "AlekhDB v2 — Sub-millisecond, local-first AI memory and GraphRAG engine for IDE agentic engineering. 9 unique capabilities including versioned DAG, Ebbinghaus forgetting, bi-temporal TMS, decision provenance, PII redaction, and offline consolidation.",
   "type": "module",
   "main": "alekhdb.js",
   "bin": {
@@ -12,6 +12,10 @@
     "seed": "node cli.js seed",
     "api": "node api.js",
     "doctor": "node doctor.js",
+    "mcp": "node mcp_server.js",
+    "bench": "node bench/run.js",
+    "bench:ide": "node benchmarks/01-ide-monorepo/runner/run-all.js",
+    "bench:ide:score": "node benchmarks/01-ide-monorepo/runner/score.js",
     "test": "node test_runner.js",
     "test:stress": "node extreme_stress_test.js",
     "test:elite": "node elite_test.js",
@@ -22,27 +26,56 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/trident/alekhdb.git"
+    "url": "git+https://github.com/MAHADEV369/AlekhDB-v2.git"
   },
   "bugs": {
-    "url": "https://github.com/trident/alekhdb/issues"
+    "url": "https://github.com/MAHADEV369/AlekhDB-v2/issues"
   },
-  "homepage": "https://github.com/trident/alekhdb#readme",
+  "homepage": "https://github.com/MAHADEV369/AlekhDB-v2#readme",
   "engines": {
     "node": ">=18.0.0"
   },
   "files": [
     "alekhdb.js",
-    "cli.js",
+    "alekhdb-extract.js",
+    "alekhdb-embed.js",
+    "alekhdb-context.js",
+    "alekhdb-consolidator.js",
+    "alekhdb-git.js",
+    "alekhdb-privacy.js",
+    "alekhdb-ast.js",
+    "alekhdb-watcher.js",
+    "alekhdb-lsp.js",
+    "mcp_server.js",
     "api.js",
-    "sampleData.js"
+    "cli.js",
+    "doctor.js",
+    "bench/",
+    "benchmarks/",
+    "phases/",
+    "sampleData.js",
+    "DESIGN_PLAN.md",
+    "IDEMemoryreq.md",
+    "README.md"
   ],
   "keywords": [
+    "alekhdb",
+    "alekhdb-v2",
     "graphrag",
     "ai-agent",
-    "memory",
-    "posix-mount",
-    "obsidian"
+    "agentic-memory",
+    "ide-memory",
+    "local-first",
+    "privacy-first",
+    "mcp",
+    "mem0",
+    "supermemory",
+    "vector-search",
+    "knowledge-graph",
+    "bi-temporal",
+    "ebbinghaus",
+    "sub-millisecond",
+    "zero-dependency"
   ],
   "author": "Antigravity & Trident",
   "license": "MIT",
@@ -52,5 +85,10 @@
     "express": "^4.19.2",
     "cors": "^2.8.5",
     "multer": "^1.4.5-lts.1"
+  },
+  "optionalDependencies": {
+    "@huggingface/transformers": "^3.4.0",
+    "web-tree-sitter": "^0.22.0",
+    "chokidar": "^4.0.3"
   }
 }

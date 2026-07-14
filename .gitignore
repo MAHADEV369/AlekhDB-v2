@@ -1,5 +1,7 @@
 node_modules/
 alekhdb_db.json
+alekhdb_db.json.bak
+alekhdb_db.json.tmp
 supermemory_db.json
 .env
 .env.local
@@ -8,3 +10,19 @@ supermemory_db.json
 __pycache__/
 *.pyc
 .system_generated/
+
+# Benchmark datasets
+benchmarks/01-ide-monorepo/dataset/seed-memories.json
+benchmarks/01-ide-monorepo/dataset/vscode/
+benchmarks/01-ide-monorepo/dataset/*.json
+benchmarks/01-ide-monorepo/tmp/
+benchmarks/01-ide-monorepo/reports/01-alekhdb.md
+benchmarks/01-ide-monorepo/reports/02-mem0.md
+benchmarks/01-ide-monorepo/reports/03-supermemory.md
+benchmarks/01-ide-monorepo/reports/04-ranking.md
+benchmarks/01-ide-monorepo/reports/metrics.json
+benchmarks/01-ide-monorepo/.sm_data/
+benchmarks/01-ide-monorepo/.sm_env
+
+# SuperMemory local server
+.supermemory/
