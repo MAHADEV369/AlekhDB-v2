@@ -1,0 +1,3 @@
+backend,task_success_pct,recall_pct,bugs_fixed,total_bugs,memory_lookups,memory_hits
+AlekhDB,100.0,53.3,5,5,15,8
+Mem0 (in-memory),80.0,33.3,4,5,15,5

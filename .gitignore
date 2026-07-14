@@ -26,3 +26,8 @@ benchmarks/01-ide-monorepo/.sm_env
 
 # SuperMemory local server
 .supermemory/
+
+# Paper (reproducibility — keep small files, ignore huge outputs)
+paper/data/seed-memories.json
+paper/data/metrics.json
+

@@ -1,0 +1,10 @@
+capability,baseline,ablated,drop
+multi-hop,1,0,1
+context-packing,1,0,1
+scope-merge,1,0,1
+temporal-evolution,1,0,1
+pii-redaction,1,0,1
+failure-memory,1,0,1
+decision-provenance,1,0,1
+optimization-history,1,0,1
+episodic-trace,1,0,1

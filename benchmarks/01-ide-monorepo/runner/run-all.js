@@ -1,4 +1,4 @@
-// run-all.js — Orchestrates the 14-operation benchmark across 3 backends.
+// run-all.js — Orchestrates the 14-operation benchmark across 5 backends.
 //
 // For each backend:
 //   1. Calls the adapter's run() function
@@ -8,18 +8,22 @@
 import { runAlekhdb } from "./../backends/alekhdb.js";
 import { runMem0 } from "./../backends/mem0.js";
 import { runSupermemory } from "./../backends/supermemory.js";
+import { runZepGraphiti } from "./../backends/zep-graphiti.js";
+import { runLetta } from "./../backends/letta.js";
 
 const t0 = performance.now();
 
 console.log("\n========================================");
 console.log("BENCHMARK 01 — AI IDE Mono-Repo");
-console.log("Running 14 ops against 3 backends...");
+console.log("Running 14 ops against 5 backends...");
 console.log("========================================\n");
 
 const backends = [
   { name: "AlekhDB", run: runAlekhdb },
   { name: "Mem0", run: runMem0 },
   { name: "Supermemory", run: runSupermemory },
+  { name: "Zep/Graphiti", run: runZepGraphiti },
+  { name: "Letta", run: runLetta },
 ];
 
 const summary = {};
@@ -61,6 +65,8 @@ console.log("Reports written to:");
 console.log("  benchmarks/01-ide-monorepo/reports/01-alekhdb-report.md");
 console.log("  benchmarks/01-ide-monorepo/reports/02-mem0-report.md");
 console.log("  benchmarks/01-ide-monorepo/reports/03-supermemory-report.md");
+console.log("  benchmarks/01-ide-monorepo/reports/04-zep-graphiti-report.md");
+console.log("  benchmarks/01-ide-monorepo/reports/05-letta-report.md");
 console.log("");
 console.log("Run the scorer next:");
 console.log("  node benchmarks/01-ide-monorepo/runner/score.js");

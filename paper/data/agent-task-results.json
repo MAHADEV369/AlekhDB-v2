@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-07-14T20:30:34.541Z",
+  "results": [
+    {
+      "backend": "AlekhDB",
+      "taskSuccess": 1,
+      "bugsFixed": 5,
+      "totalBugs": 5,
+      "memoryLookups": 15,
+      "memoryHits": 8,
+      "recallAccuracy": 0.533
+    },
+    {
+      "backend": "Mem0 (in-memory)",
+      "taskSuccess": 0.8,
+      "bugsFixed": 4,
+      "totalBugs": 5,
+      "memoryLookups": 15,
+      "memoryHits": 5,
+      "recallAccuracy": 0.333
+    }
+  ]
+}

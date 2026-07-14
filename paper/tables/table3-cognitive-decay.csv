@@ -1,0 +1,4 @@
+strategy,recall_accuracy
+"Ebbinghaus (1wk half-life)",100.0
+"Uniform TTL (7 days)",24.0
+"No decay",100.0

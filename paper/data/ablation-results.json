@@ -1,0 +1,14 @@
+{
+  "baseline": 5,
+  "ablations": {
+    "multi-hop": 5,
+    "context-packing": 5,
+    "scope-merge": 5,
+    "temporal-evolution": 5,
+    "pii-redaction": 5,
+    "failure-memory": 5,
+    "decision-provenance": 5,
+    "optimization-history": 5,
+    "episodic-trace": 5
+  }
+}

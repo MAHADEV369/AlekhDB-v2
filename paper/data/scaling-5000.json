@@ -1,0 +1,861 @@
+{
+  "elapsedSec": 1123.086,
+  "backends": {
+    "01-alekhdb": {
+      "results": [
+        {
+          "op": 1,
+          "opName": "Add a fact across branches",
+          "status": "OK",
+          "metrics": {
+            "p50": 0.4398,
+            "p95": 0.5272,
+            "p99": 0.8416,
+            "min": 0.3989,
+            "max": 0.8416,
+            "mean": 0.4435,
+            "samples": 100
+          },
+          "latencyMs": 0.4398
+        },
+        {
+          "op": 2,
+          "opName": "Semantic search",
+          "status": "OK",
+          "metrics": {
+            "p50": 3.2509,
+            "p95": 3.4198,
+            "p99": 3.6023,
+            "min": 3.1484,
+            "max": 3.6023,
+            "mean": 3.2666,
+            "samples": 50,
+            "recall": 0.6,
+            "totalHits": 3,
+            "totalExpected": 5,
+            "returned": 600
+          },
+          "latencyMs": 3.2509
+        },
+        {
+          "op": 3,
+          "opName": "Multi-hop graph traversal",
+          "status": "OK",
+          "metrics": {
+            "p50": 0.3947,
+            "p95": 0.4102,
+            "p99": 0.4162,
+            "min": 0.3897,
+            "max": 0.4162,
+            "mean": 0.3973,
+            "samples": 50,
+            "returned": 5
+          },
+          "latencyMs": 0.3947
+        },
+        {
+          "op": 4,
+          "opName": "Token-budget context packing",
+          "status": "OK",
+          "metrics": {
+            "p50": 22.2592,
+            "p95": 22.8663,
+            "p99": 24.0623,
+            "min": 22.0872,
+            "max": 24.0623,
+            "mean": 22.3453,
+            "samples": 50,
+            "returned": 0
+          },
+          "latencyMs": 22.2592
+        },
+        {
+          "op": 5,
+          "opName": "Branch isolation (add contradicting fact)",
+          "status": "OK",
+          "metrics": {
+            "p50": 0.4167,
+            "p95": 0.5506,
+            "p99": 1.0687,
+            "min": 0.3753,
+            "max": 1.0687,
+            "mean": 0.44,
+            "samples": 100,
+            "leakage": 0
+          },
+          "latencyMs": 0.4167
+        },
+        {
+          "op": 6,
+          "opName": "Cross-scope merge",
+          "status": "OK",
+          "metrics": {
+            "p50": 17.0187,
+            "p95": 18.5151,
+            "p99": 19.1468,
+            "min": 16.3288,
+            "max": 19.1468,
+            "mean": 17.1242,
+            "samples": 50,
+            "returned": 23050
+          },
+          "latencyMs": 17.0187
+        },
+        {
+          "op": 7,
+          "opName": "Temporal evolution query",
+          "status": "OK",
+          "metrics": {
+            "p50": 14.8795,
+            "p95": 15.6979,
+            "p99": 15.9226,
+            "min": 14.2046,
+            "max": 15.9226,
+            "mean": 14.9499,
+            "samples": 50,
+            "returned": 5
+          },
+          "latencyMs": 14.8795
+        },
+        {
+          "op": 8,
+          "opName": "Inference review queue",
+          "status": "OK",
+          "metrics": {
+            "p50": 0.06062500000007276,
+            "p95": 0.06062500000007276,
+            "p99": 0.06062500000007276,
+            "min": 0.06062500000007276,
+            "max": 0.06062500000007276,
+            "returned": 1
+          },
+          "latencyMs": 0.06062500000007276
+        },
+        {
+          "op": 9,
+          "opName": "Agentic mass-forget",
+          "status": "OK",
+          "metrics": {
+            "p50": 0.0776,
+            "p95": 65.3673,
+            "p99": 65.3673,
+            "min": 0.0694,
+            "max": 65.3673,
+            "mean": 3.3485,
+            "samples": 20
+          },
+          "latencyMs": 0.0776
+        },
+        {
+          "op": 10,
+          "opName": "PII redaction",
+          "status": "OK",
+          "metrics": {
+            "p50": 0.5241,
+            "p95": 0.983,
+            "p99": 0.9928,
+            "min": 0.478,
+            "max": 0.9928,
+            "mean": 0.5837,
+            "samples": 50,
+            "redactions": 0,
+            "redacted": false,
+            "storedLabelPreview": "My API key is sk-abc123def456ghi789"
+          },
+          "latencyMs": 0.5241
+        },
+        {
+          "op": 11,
+          "opName": "Failure memory",
+          "status": "OK",
+          "metrics": {
+            "p50": 0.6376,
+            "p95": 0.9328,
+            "p99": 1.1082,
+            "min": 0.6131,
+            "max": 1.1082,
+            "mean": 0.6744,
+            "samples": 50
+          },
+          "latencyMs": 0.6376
+        },
+        {
+          "op": 12,
+          "opName": "Decision provenance",
+          "status": "OK",
+          "metrics": {
+            "p50": 0.4842,
+            "p95": 0.7331,
+            "p99": 0.9243,
+            "min": 0.4539,
+            "max": 0.9243,
+            "mean": 0.5154,
+            "samples": 100
+          },
+          "latencyMs": 0.4842
+        },
+        {
+          "op": 13,
+          "opName": "Optimization history",
+          "status": "OK",
+          "metrics": {
+            "p50": 0.5011,
+            "p95": 0.7382,
+            "p99": 1.1006,
+            "min": 0.4448,
+            "max": 1.1006,
+            "mean": 0.5277,
+            "samples": 100
+          },
+          "latencyMs": 0.5011
+        },
+        {
+          "op": 14,
+          "opName": "Episodic trace + replay",
+          "status": "OK",
+          "metrics": {
+            "p50": 0.0004,
+            "p95": 0.0004,
+            "p99": 0.0008,
+            "min": 0.0003,
+            "max": 0.0008,
+            "mean": 0.0004,
+            "samples": 100,
+            "returned": 2
+          },
+          "latencyMs": 0.0004
+        }
+      ],
+      "extras": {
+        "subtitle": "Local-first, zero-dep, sub-ms core. Uses AlekhDB v2 with all Phase 1-8 features.",
+        "setupTimeMs": 477.494333,
+        "dbSizeMB": 0,
+        "heapDeltaMB": 70.62
+      },
+      "generatedAt": "2026-07-14T19:07:27.288Z"
+    },
+    "02-mem0": {
+      "results": [
+        {
+          "op": 1,
+          "opName": "Add a fact across branches",
+          "status": "OK",
+          "metrics": {
+            "p50": 328.4498,
+            "p95": 571.1072,
+            "p99": 578.2385,
+            "min": 42.6053,
+            "max": 578.2385,
+            "mean": 309.3728,
+            "samples": 30
+          },
+          "latencyMs": 328.4498
+        },
+        {
+          "op": 2,
+          "opName": "Semantic search",
+          "status": "OK",
+          "metrics": {
+            "p50": 315.8043,
+            "p95": 490.9069,
+            "p99": 490.9069,
+            "min": 110.9398,
+            "max": 490.9069,
+            "mean": 293.8703,
+            "samples": 20,
+            "returned": 10
+          },
+          "latencyMs": 315.8043
+        },
+        {
+          "op": 3,
+          "status": "SKIP",
+          "reason": "Mem0 is vector store only — no graph traversal / multi-hop BFS",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 4,
+          "status": "SKIP",
+          "reason": "Mem0 has no token-budget context packing API — closest is get_all which dumps everything",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 5,
+          "opName": "Branch isolation (add contradicting fact)",
+          "status": "OK",
+          "metrics": {
+            "p50": 269.4776,
+            "p95": 466.2234,
+            "p99": 466.2234,
+            "min": 50.6894,
+            "max": 466.2234,
+            "mean": 265.5185,
+            "samples": 20,
+            "leakage": 0
+          },
+          "latencyMs": 269.4776
+        },
+        {
+          "op": 6,
+          "status": "SKIP",
+          "reason": "Mem0 has no scope merge API — would require manual copy + delete on user_id boundary",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 7,
+          "status": "SKIP",
+          "reason": "Mem0 has no temporal aggregation / bucket query API — search returns flat top-k",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 8,
+          "status": "SKIP",
+          "reason": "Mem0 has no inference review queue — all memories are trusted by default",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 9,
+          "opName": "Agentic mass-forget",
+          "status": "OK",
+          "metrics": {
+            "p50": 0.1911,
+            "p95": 0.2553,
+            "p99": 0.2553,
+            "min": 0.1458,
+            "max": 0.2553,
+            "mean": 0.1905,
+            "samples": 5,
+            "before": 7365,
+            "matched": 7365
+          },
+          "latencyMs": 0.1911
+        },
+        {
+          "op": 10,
+          "opName": "PII redaction",
+          "status": "OK",
+          "metrics": {
+            "p50": 0,
+            "p95": 0,
+            "p99": 0,
+            "redacted": false,
+            "leakage": 1
+          },
+          "latencyMs": 0
+        },
+        {
+          "op": 11,
+          "status": "SKIP",
+          "reason": "Mem0 has no failure memory type — would require custom metadata, not queryable as a first-class concept",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 12,
+          "status": "SKIP",
+          "reason": "Mem0 has no decision provenance — no alternatives, no chosen, no rationale structured fields",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 13,
+          "status": "SKIP",
+          "reason": "Mem0 has no change/optimization history — would require custom metadata, not first-class queryable",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 14,
+          "status": "SKIP",
+          "reason": "Mem0 has no episodic trace/replay API — closest is search by time, no chronological frame sequence",
+          "metrics": null,
+          "latencyMs": 0
+        }
+      ],
+      "extras": {
+        "subtitle": "Real local Mem0-compatible REST server (http://127.0.0.1:8124) with Ollama embeddings (nomic-embed-text, 768-dim) and in-memory vector store.",
+        "setupTimeMs": 0,
+        "dbSizeMB": 0,
+        "isFallback": false
+      },
+      "generatedAt": "2026-07-14T19:12:55.453Z"
+    },
+    "03-supermemory": {
+      "results": [
+        {
+          "op": 1,
+          "opName": "Add a fact across branches",
+          "status": "OK",
+          "metrics": {
+            "p50": 0.4348,
+            "p95": 2.9815,
+            "p99": 4.806,
+            "min": 0.3307,
+            "max": 4.806,
+            "mean": 0.7369,
+            "samples": 30
+          },
+          "latencyMs": 0.4348
+        },
+        {
+          "op": 2,
+          "opName": "Semantic search",
+          "status": "OK",
+          "metrics": {
+            "p50": 125.2053,
+            "p95": 198.1253,
+            "p99": 198.1253,
+            "min": 96.5712,
+            "max": 198.1253,
+            "mean": 134.1398,
+            "samples": 20,
+            "returned": 10
+          },
+          "latencyMs": 125.2053
+        },
+        {
+          "op": 3,
+          "status": "SKIP",
+          "reason": "Supermemory is not a graph DB — no multi-hop BFS over relations",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 4,
+          "status": "SKIP",
+          "reason": "Supermemory's REST search returns flat top-k; no token-budget context packing API exposed",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 5,
+          "opName": "Branch isolation (add contradicting fact)",
+          "status": "OK",
+          "metrics": {
+            "p50": 0.3481,
+            "p95": 0.488,
+            "p99": 0.488,
+            "min": 0.2706,
+            "max": 0.488,
+            "mean": 0.3605,
+            "samples": 20,
+            "leakage": 0
+          },
+          "latencyMs": 0.3481
+        },
+        {
+          "op": 6,
+          "status": "SKIP",
+          "reason": "Supermemory has no scope-merge API; would require manual container-tag move + dedup",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 7,
+          "status": "SKIP",
+          "reason": "Supermemory's search supports time filters but no bucket aggregation series",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 8,
+          "opName": "Inference review queue",
+          "status": "OK",
+          "metrics": {
+            "p50": 0.0233,
+            "p95": 0.0329,
+            "p99": 0.0371,
+            "min": 0.0216,
+            "max": 0.0371,
+            "mean": 0.0248,
+            "samples": 30,
+            "returned": 1
+          },
+          "latencyMs": 0.0233
+        },
+        {
+          "op": 9,
+          "opName": "Agentic mass-forget",
+          "status": "OK",
+          "metrics": {
+            "p50": 111.4612,
+            "p95": 180.8313,
+            "p99": 180.8313,
+            "min": 97.3472,
+            "max": 180.8313,
+            "mean": 131.4892,
+            "samples": 5
+          },
+          "latencyMs": 111.4612
+        },
+        {
+          "op": 10,
+          "opName": "PII redaction",
+          "status": "OK",
+          "metrics": {
+            "p50": 0,
+            "p95": 0,
+            "p99": 0,
+            "redacted": false,
+            "leakage": 1
+          },
+          "latencyMs": 0
+        },
+        {
+          "op": 11,
+          "opName": "Failure memory",
+          "status": "OK",
+          "metrics": {
+            "p50": 0.3874,
+            "p95": 2.5798,
+            "p99": 2.5798,
+            "min": 0.2652,
+            "max": 2.5798,
+            "mean": 0.5011,
+            "samples": 20
+          },
+          "latencyMs": 0.3874
+        },
+        {
+          "op": 12,
+          "opName": "Decision provenance",
+          "status": "OK",
+          "metrics": {
+            "p50": 0.3098,
+            "p95": 0.4385,
+            "p99": 0.4385,
+            "min": 0.206,
+            "max": 0.4385,
+            "mean": 0.3126,
+            "samples": 20
+          },
+          "latencyMs": 0.3098
+        },
+        {
+          "op": 13,
+          "opName": "Optimization history",
+          "status": "OK",
+          "metrics": {
+            "p50": 0.2966,
+            "p95": 0.5651,
+            "p99": 0.5651,
+            "min": 0.2373,
+            "max": 0.5651,
+            "mean": 0.33,
+            "samples": 20
+          },
+          "latencyMs": 0.2966
+        },
+        {
+          "op": 14,
+          "opName": "Episodic trace + replay",
+          "status": "OK",
+          "metrics": {
+            "p50": 0.1751,
+            "p95": 0.2061,
+            "p99": 0.213,
+            "min": 0.1427,
+            "max": 0.213,
+            "mean": 0.1802,
+            "samples": 30,
+            "returned": 2
+          },
+          "latencyMs": 0.1751
+        }
+      ],
+      "extras": {
+        "subtitle": "Local SuperMemory-style REST server (http://127.0.0.1:8123). Real HTTP round-trips against an Express-backed versioned DAG.",
+        "setupTimeMs": 4873.629124999978,
+        "dbSizeMB": 0,
+        "isFallback": false
+      },
+      "generatedAt": "2026-07-14T19:13:00.328Z"
+    },
+    "04-zep-graphiti": {
+      "results": [
+        {
+          "op": 1,
+          "opName": "Add a fact across branches",
+          "status": "OK",
+          "metrics": {
+            "p50": 1.9653,
+            "p95": 2.5272,
+            "p99": 2.5272,
+            "min": 1.3295,
+            "max": 2.5272,
+            "mean": 2.0369,
+            "samples": 5
+          },
+          "latencyMs": 1.9653
+        },
+        {
+          "op": 2,
+          "status": "SKIP",
+          "reason": "fetch failed",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 3,
+          "status": "SKIP",
+          "reason": "Zep/Graphiti exposes a hybrid retriever, not direct BFS over edges — no low-level multi-hop walk API",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 4,
+          "status": "SKIP",
+          "reason": "Zep/Graphiti doesn't expose a token-budget context packing API — returns ranked results",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 5,
+          "opName": "Branch isolation (add contradicting fact)",
+          "status": "OK",
+          "metrics": {
+            "p50": 1.5603,
+            "p95": 1.9636,
+            "p99": 1.9636,
+            "min": 1.0173,
+            "max": 1.9636,
+            "mean": 1.4933,
+            "samples": 5,
+            "leakage": 0
+          },
+          "latencyMs": 1.5603
+        },
+        {
+          "op": 6,
+          "status": "SKIP",
+          "reason": "Zep/Graphiti's group_id is the scoping unit; merge would require manual episode replay",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 7,
+          "status": "SKIP",
+          "reason": "Zep/Graphiti's search supports time filters but not bucket aggregation series",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 8,
+          "status": "SKIP",
+          "reason": "Zep/Graphiti treats all extracted facts as trusted — no review queue concept",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 9,
+          "status": "SKIP",
+          "reason": "Zep/Graphiti doesn't expose a bulk-forget-by-query API; would need episode-level deletes",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 10,
+          "opName": "PII redaction",
+          "status": "OK",
+          "metrics": {
+            "p50": 0,
+            "p95": 0,
+            "p99": 0,
+            "redacted": false,
+            "leakage": 1
+          },
+          "latencyMs": 0
+        },
+        {
+          "op": 11,
+          "status": "SKIP",
+          "reason": "Zep/Graphiti treats all episodes uniformly — no failure-type first-class concept",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 12,
+          "status": "SKIP",
+          "reason": "Zep/Graphiti's LLM extraction may capture decisions, but no structured alternatives/chosen/rationale fields",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 13,
+          "status": "SKIP",
+          "reason": "Zep/Graphiti's bi-temporal edges track validity, but no first-class change/replace semantics",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 14,
+          "status": "SKIP",
+          "reason": "Zep/Graphiti's episode ingestion is the closest concept, but no frame-level append + replay API",
+          "metrics": null,
+          "latencyMs": 0
+        }
+      ],
+      "extras": {
+        "subtitle": "Local Zep/Graphiti-compatible REST server (http://127.0.0.1:8125) with Ollama LLM extraction (qwen3.5:9b).",
+        "setupTimeMs": 145.4397089999984,
+        "dbSizeMB": 0,
+        "isFallback": false
+      },
+      "generatedAt": "2026-07-14T19:21:03.670Z"
+    },
+    "05-letta": {
+      "results": [
+        {
+          "op": 1,
+          "opName": "Add a fact across branches",
+          "status": "OK",
+          "metrics": {
+            "p50": 0.7843,
+            "p95": 2.1774,
+            "p99": 2.1774,
+            "min": 0.3893,
+            "max": 2.1774,
+            "mean": 1.0282,
+            "samples": 5
+          },
+          "latencyMs": 0.7843
+        },
+        {
+          "op": 2,
+          "opName": "Semantic search",
+          "status": "OK",
+          "metrics": {
+            "p50": 0.6657,
+            "p95": 0.7246,
+            "p99": 0.7246,
+            "min": 0.6195,
+            "max": 0.7246,
+            "mean": 0.6699,
+            "samples": 3,
+            "returned": 6
+          },
+          "latencyMs": 0.6657
+        },
+        {
+          "op": 3,
+          "status": "SKIP",
+          "reason": "Letta's archival memory is a flat vector store — no edge graph BFS API",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 4,
+          "status": "SKIP",
+          "reason": "Letta's recall memory is in-context blocks; no token-budget packing API exposed via REST",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 5,
+          "opName": "Branch isolation (add contradicting fact)",
+          "status": "OK",
+          "metrics": {
+            "p50": 0.4752,
+            "p95": 0.7105,
+            "p99": 0.7105,
+            "min": 0.3018,
+            "max": 0.7105,
+            "mean": 0.4985,
+            "samples": 5,
+            "leakage": 0
+          },
+          "latencyMs": 0.4752
+        },
+        {
+          "op": 6,
+          "status": "SKIP",
+          "reason": "Letta's per-agent memory is isolated; merge would require manual copy + recall rewrite",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 7,
+          "status": "SKIP",
+          "reason": "Letta's archival search supports recency filter, not bucket aggregation",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 8,
+          "status": "SKIP",
+          "reason": "Letta has no inference review queue — all memories are trusted",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 9,
+          "opName": "Agentic mass-forget",
+          "status": "OK",
+          "metrics": {
+            "p50": 0.3002,
+            "p95": 0.7095,
+            "p99": 0.7095,
+            "min": 0.272,
+            "max": 0.7095,
+            "mean": 0.4273,
+            "samples": 3
+          },
+          "latencyMs": 0.3002
+        },
+        {
+          "op": 10,
+          "opName": "PII redaction",
+          "status": "OK",
+          "metrics": {
+            "p50": 0,
+            "p95": 0,
+            "p99": 0,
+            "redacted": false,
+            "leakage": 1
+          },
+          "latencyMs": 0
+        },
+        {
+          "op": 11,
+          "status": "SKIP",
+          "reason": "Letta has no failure memory type — all archival passages are uniform",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 12,
+          "status": "SKIP",
+          "reason": "Letta's recall memory can hold decisions but no structured alternatives/chosen/rationale fields",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 13,
+          "status": "SKIP",
+          "reason": "Letta has no change/replace semantic — just append/delete",
+          "metrics": null,
+          "latencyMs": 0
+        },
+        {
+          "op": 14,
+          "status": "SKIP",
+          "reason": "Letta's archival memory is the closest concept but no frame-level append + replay API",
+          "metrics": null,
+          "latencyMs": 0
+        }
+      ],
+      "extras": {
+        "subtitle": "Local Letta-compatible REST server (http://127.0.0.1:8126) with Ollama embeddings (nomic-embed-text). Recall + archival memory architecture.",
+        "setupTimeMs": 0,
+        "dbSizeMB": 0,
+        "isFallback": false
+      },
+      "generatedAt": "2026-07-14T19:26:04.778Z"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "multi-hop": {
+    "capability": "multi-hop",
+    "baseline": 1,
+    "ablated": 0,
+    "drop": 1
+  },
+  "context-packing": {
+    "capability": "context-packing",
+    "baseline": 1,
+    "ablated": 0,
+    "drop": 1
+  },
+  "scope-merge": {
+    "capability": "scope-merge",
+    "baseline": 1,
+    "ablated": 0,
+    "drop": 1
+  },
+  "temporal-evolution": {
+    "capability": "temporal-evolution",
+    "baseline": 1,
+    "ablated": 0,
+    "drop": 1
+  },
+  "pii-redaction": {
+    "capability": "pii-redaction",
+    "baseline": 1,
+    "ablated": 0,
+    "drop": 1
+  },
+  "failure-memory": {
+    "capability": "failure-memory",
+    "baseline": 1,
+    "ablated": 0,
+    "drop": 1
+  },
+  "decision-provenance": {
+    "capability": "decision-provenance",
+    "baseline": 1,
+    "ablated": 0,
+    "drop": 1
+  },
+  "optimization-history": {
+    "capability": "optimization-history",
+    "baseline": 1,
+    "ablated": 0,
+    "drop": 1
+  },
+  "episodic-trace": {
+    "capability": "episodic-trace",
+    "baseline": 1,
+    "ablated": 0,
+    "drop": 1
+  }
+}

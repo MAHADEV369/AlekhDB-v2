@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-07-14T20:35:00.777Z",
+  "results": [
+    {
+      "strategy": "Ebbinghaus (1wk half-life)",
+      "avgRecall": 1,
+      "totalTasks": 50,
+      "totalFacts": 300
+    },
+    {
+      "strategy": "Uniform TTL (7 days)",
+      "avgRecall": 0.24,
+      "totalTasks": 50,
+      "totalFacts": 300
+    },
+    {
+      "strategy": "No decay",
+      "avgRecall": 1,
+      "totalTasks": 50,
+      "totalFacts": 300
+    }
+  ]
+}

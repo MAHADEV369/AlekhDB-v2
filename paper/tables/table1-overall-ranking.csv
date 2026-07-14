@@ -1,0 +1,6 @@
+backend,score,ops_ok,ops_skip,ops_total
+AlekhDB,72.3,14,0,14
+Mem0,49.5,5,9,14
+Supermemory,63.5,10,4,14
+Zep/Graphiti,39.3,4,10,14
+Letta,62.4,5,9,14
