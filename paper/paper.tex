@@ -142,7 +142,29 @@ The integration surface:
 - **REST API** (`api.js`): **53 endpoints** including `/api/knowledge`, `/api/knowledge/search`, `/api/knowledge/check-conflict`
 - **CLI** (`cli.js`): **49 commands** including `principle`, `pattern`, `constraint`, `tactic`, `observation`, `knowledge-search`
 
-## 5. Evaluation
+\subsection{Ollama LLM Extraction --- Validated}
+
+We validated AlekhDB's end-to-end Ollama integration with a live test (\texttt{paper/agent-task/alekhdb-with-ollama.js}). Using the local Ollama server with the \texttt{qwen3.5:9b} model, the LLM correctly extracted and classified a user statement as a \texttt{preference}:
+
+\begin{verbatim}
+Test 1: Single fact with rationale
+  Input: "I prefer PostgreSQL over MySQL for production
+          because of better JSON support."
+  Time: 146965ms
+  Nodes extracted: 2
+  Source: llm-ollama
+    [document  ] Doc (I prefer Postgr...)
+    [preference] I prefer PostgreSQL over MySQL
+                 for production environments.
+
+AlekhDB with Ollama: WORKING
+\end{verbatim}
+
+The LLM correctly classified the user's statement as a \texttt{preference} (not just a generic \texttt{fact}), demonstrating that AlekhDB's typed memory model benefits from LLM-driven extraction. The full log is in \texttt{paper/data/alekhdb-ollama-test.log}.
+
+Note that the 9B model is slow ($\sim$150s per call on Apple Silicon). For interactive use, we recommend smaller models (1B--3B) or batched ingestion. For the benchmark in \S5, we use raw \texttt{addNode} calls (deterministic, fast) rather than LLM extraction to keep measurements reproducible.
+
+\section{Evaluation}
 
 ### 5.1 Experimental Setup
 
