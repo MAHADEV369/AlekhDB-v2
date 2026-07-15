@@ -180,6 +180,12 @@ export async function runLetta() {
   // ─── Op 14: Episodic trace + replay ──────────────────────────────
   results.push(skip(14, "Letta's archival memory is the closest concept but no frame-level append + replay API"));
 
+  // ─── Op 15-18: Experience Knowledge Graph (Letta has no typed knowledge graph) ──
+  results.push(skip(15, "Letta's recall memory holds free-form blocks — no typed principle/pattern/constraint knowledge"));
+  results.push(skip(16, "Letta has no typed knowledge edges — only block references"));
+  results.push(skip(17, "Letta's archival search is not type-filtered — no unified knowledge search"));
+  results.push(skip(18, "Letta has no pre-action conflict guard API"));
+
   writeReport("05-letta", results, {
     subtitle: `Local Letta-compatible REST server (${BASE_URL}) with Ollama embeddings (${process.env.LETTA_EMBED || 'nomic-embed-text'}). Recall + archival memory architecture.`,
     setupTimeMs,

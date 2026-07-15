@@ -191,4 +191,8 @@ export const OP_NAMES = {
   12: "Decision provenance",
   13: "Optimization history",
   14: "Episodic trace + replay",
+  15: "Add a knowledge principle",
+  16: "Add a supersedes edge",
+  17: "Unified knowledge search",
+  18: "Pre-action conflict guard",
 };

@@ -31,3 +31,7 @@ benchmarks/01-ide-monorepo/.sm_env
 paper/data/seed-memories.json
 paper/data/metrics.json
 
+# Benchmark reports (regenerated each run)
+benchmarks/01-ide-monorepo/reports/0*.md
+benchmarks/01-ide-monorepo/reports/metrics.json
+

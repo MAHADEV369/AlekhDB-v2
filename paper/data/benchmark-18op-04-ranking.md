@@ -1,60 +1,64 @@
 # Benchmark 01 — Final Ranking: AI IDE Multi-Agent Coding on 100K-File Polyglot Mono-Repo
 
-Generated: 2026-07-14T18:52:10.172Z
+Generated: 2026-07-15T04:49:05.081Z
 
 ## Headline
 
-**Overall winner: 01-alekhdb** (weighted score 87.3/100)
-**Runner-up: 03-supermemory** (score 63.85/100)
+**Overall winner: 01-alekhdb** (weighted score 84.72/100)
+**Runner-up: 03-supermemory** (score 59.33/100)
 
 ## Per-operation winners
 
 | # | Op | Winner | Losers | Reason |
 |---|---|---|---|---|
-| 1 | Add a fact across branches | **01-alekhdb** | 03-supermemory, 05-letta, 04-zep-graphiti, 02-mem0 | lowest p50 = 0.0955ms |
-| 2 | Semantic search | **01-alekhdb** | 05-letta, 03-supermemory, 02-mem0, 04-zep-graphiti | lowest p50 = 0.1363ms |
-| 3 | Multi-hop graph traversal | **01-alekhdb** | — | lowest p50 = 0.0782ms |
-| 4 | Token-budget context packing | **01-alekhdb** | — | lowest p50 = 3.9172ms |
-| 5 | Branch isolation (add contradicting fact) | **01-alekhdb** | 03-supermemory, 05-letta, 04-zep-graphiti, 02-mem0 | lowest p50 = 0.0748ms |
-| 6 | Cross-scope merge | **01-alekhdb** | — | lowest p50 = 2.3689ms |
-| 7 | Temporal evolution query | **01-alekhdb** | — | lowest p50 = 2.351ms |
-| 8 | Inference review queue | **03-supermemory** | 01-alekhdb | lowest p50 = 0.0292ms |
-| 9 | Agentic mass-forget | **01-alekhdb** | 02-mem0, 05-letta, 03-supermemory | lowest p50 = 0.0182ms |
+| 1 | Add a fact across branches | **03-supermemory** | 01-alekhdb, 04-zep-graphiti, 05-letta, 02-mem0 | lowest p50 = 0.1852ms |
+| 2 | Semantic search | **01-alekhdb** | 05-letta, 03-supermemory, 02-mem0, 04-zep-graphiti | lowest p50 = 0.66ms |
+| 3 | Multi-hop graph traversal | **01-alekhdb** | — | lowest p50 = 0.1993ms |
+| 4 | Token-budget context packing | **01-alekhdb** | — | lowest p50 = 11.1284ms |
+| 5 | Branch isolation (add contradicting fact) | **03-supermemory** | 01-alekhdb, 04-zep-graphiti, 05-letta, 02-mem0 | lowest p50 = 0.2084ms |
+| 6 | Cross-scope merge | **01-alekhdb** | — | lowest p50 = 8.213ms |
+| 7 | Temporal evolution query | **01-alekhdb** | — | lowest p50 = 7.2079ms |
+| 8 | Inference review queue | **03-supermemory** | 01-alekhdb | lowest p50 = 0.04ms |
+| 9 | Agentic mass-forget | **01-alekhdb** | 02-mem0, 05-letta, 03-supermemory | lowest p50 = 0.0199ms |
 | 10 | PII redaction | **02-mem0** | 03-supermemory, 04-zep-graphiti, 05-letta, 01-alekhdb | lowest p50 = 0ms |
-| 11 | Failure memory | **01-alekhdb** | 03-supermemory | lowest p50 = 0.1048ms |
-| 12 | Decision provenance | **01-alekhdb** | 03-supermemory | lowest p50 = 0.0983ms |
-| 13 | Optimization history | **01-alekhdb** | 03-supermemory | lowest p50 = 0.1004ms |
+| 11 | Failure memory | **03-supermemory** | 01-alekhdb | lowest p50 = 0.1927ms |
+| 12 | Decision provenance | **03-supermemory** | 01-alekhdb | lowest p50 = 0.1942ms |
+| 13 | Optimization history | **03-supermemory** | 01-alekhdb | lowest p50 = 0.1914ms |
 | 14 | Episodic trace + replay | **01-alekhdb** | 03-supermemory | lowest p50 = 0.0004ms |
+| 15 | Add a knowledge principle | **01-alekhdb** | — | lowest p50 = 0.2417ms |
+| 16 | Add supersedes edge | **01-alekhdb** | — | lowest p50 = 0.0037ms |
+| 17 | Unified knowledge search | **01-alekhdb** | — | lowest p50 = 1.0631ms |
+| 18 | Pre-action conflict guard | **01-alekhdb** | — | lowest p50 = 1.1128ms |
 
 ## Per-feature coverage
 
 | Backend | Operations supported | Coverage % |
 |---|---|---|
-| 01-alekhdb | 14 / 14 | 100% |
-| 02-mem0 | 5 / 14 | 35.7% |
-| 03-supermemory | 10 / 14 | 71.4% |
-| 04-zep-graphiti | 4 / 14 | 28.6% |
-| 05-letta | 5 / 14 | 35.7% |
+| 01-alekhdb | 18 / 18 | 100% |
+| 02-mem0 | 5 / 18 | 27.8% |
+| 03-supermemory | 10 / 18 | 55.6% |
+| 04-zep-graphiti | 4 / 18 | 22.2% |
+| 05-letta | 5 / 18 | 27.8% |
 
 ## Overall weighted scores
 
 | Backend | Total | Latency (40%) | Correctness (25%) | Features (15%) | Footprint (10%) | Setup (10%) |
 |---|---|---|---|---|---|---|
-| **01-alekhdb** | **87.3** | 93.26 | 60 | 100 | 100 | 99.92 |
-| **03-supermemory** | **63.85** | 83.01 | 0 | 71.4 | 100 | 99.41 |
-| **05-letta** | **52.85** | 93.73 | 0 | 35.7 | 100 | 0 |
-| **02-mem0** | **41.73** | 63.14 | 0 | 35.7 | 100 | 11.21 |
-| **04-zep-graphiti** | **40.81** | 41.32 | 0 | 28.6 | 100 | 99.96 |
+| **01-alekhdb** | **84.72** | 86.86 | 60 | 100 | 100 | 99.75 |
+| **03-supermemory** | **59.33** | 77.74 | 0 | 55.6 | 100 | 98.91 |
+| **05-letta** | **50.14** | 89.93 | 0 | 27.8 | 100 | 0 |
+| **02-mem0** | **41.11** | 67.34 | 0 | 27.8 | 100 | 0 |
+| **04-zep-graphiti** | **37.91** | 36.46 | 0 | 22.2 | 100 | 99.92 |
 
 ## Detailed metrics
 
 | Backend | Avg p50 (ms) | Avg recall@5 | DB size (MB) | Setup (s) | Backend type |
 |---|---|---|---|---|---|
-| 01-alekhdb | 0.6775 | 0.6 | 0 | 0.08 | Real |
-| 02-mem0 | 15.9331 | 0 | 0 | 88.79 | Real |
-| 03-supermemory | 2.6849 | 0 | 0 | 0.59 | Real |
-| 04-zep-graphiti | 89.3555 | 0 | 0 | 0.04 | Real |
-| 05-letta | 0.6175 | 0 | 0 | 124.19 | Real |
+| 01-alekhdb | 1.741 | 0.6 | 0 | 0.25 | Real |
+| 02-mem0 | 11.2619 | 0 | 0 | 1227.23 | Real |
+| 03-supermemory | 4.5194 | 0 | 0 | 1.09 | Real |
+| 04-zep-graphiti | 130.2059 | 0 | 0 | 0.08 | Real |
+| 05-letta | 1.1656 | 0 | 0 | 208.57 | Real |
 
 ## What each backend uniquely provides
 

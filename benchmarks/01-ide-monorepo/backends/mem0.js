@@ -202,6 +202,18 @@ export async function runMem0() {
   // ─── Op 14: Episodic trace + replay ──────────────────────────────
   results.push(skip(14, "Mem0 has no episodic trace/replay API — closest is search by time, no chronological frame sequence"));
 
+  // ─── Op 15: Add a knowledge principle (Experience Knowledge Graph) ──
+  results.push(skip(15, "Mem0 has no first-class principle/pattern/constraint knowledge type — all memories are flat text"));
+
+  // ─── Op 16: Add a supersedes edge (multi-agent consistency) ──────────
+  results.push(skip(16, "Mem0 has no typed knowledge edges (supersedes, contradicts, etc.) — graph is implicit"));
+
+  // ─── Op 17: searchKnowledge (unified search across knowledge types) ──
+  results.push(skip(17, "Mem0 has no type-filtered unified search — only generic memory search"));
+
+  // ─── Op 18: checkConflict (pre-action guard for multi-agent safety) ─
+  results.push(skip(18, "Mem0 has no pre-action conflict guard API"));
+
   writeReport("02-mem0", results, {
     subtitle: `Real local Mem0-compatible REST server (${BASE_URL}) with Ollama embeddings (nomic-embed-text, 768-dim) and in-memory vector store.`,
     setupTimeMs,

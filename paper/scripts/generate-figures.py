@@ -7,11 +7,14 @@ Outputs:
   paper/figures/fig3-cognitive-decay.png
   paper/figures/fig4-ablation.png
   paper/figures/fig5-agent-task.png
+  paper/figures/fig6-knowledge-graph.png (NEW)
   paper/tables/table1-overall-ranking.csv
   paper/tables/table2-scaling.csv
   paper/tables/table3-cognitive-decay.csv
   paper/tables/table4-ablation.csv
-  paper/tables/table5-statistical-trials.csv
+  paper/tables/table5-agent-task.csv
+  paper/tables/table6-statistical-trials.csv
+  paper/tables/table7-knowledge-graph.csv (NEW)
 """
 
 import json
@@ -35,9 +38,9 @@ plt.rcParams.update({
 })
 
 # === Load all data ===
-with open(os.path.join(DATA_DIR, "benchmark-5way-ranking.md")) as f:
-    ranking_md = f.read()
-with open(os.path.join(DATA_DIR, "benchmark-5way-metrics.json")) as f:
+# Prefer the 18-op benchmark if available, fall back to 5-way
+metrics_file = "benchmark-18op-metrics.json" if os.path.exists(os.path.join(DATA_DIR, "benchmark-18op-metrics.json")) else "benchmark-5way-metrics.json"
+with open(os.path.join(DATA_DIR, metrics_file)) as f:
     metrics = json.load(f)
 with open(os.path.join(DATA_DIR, "scaling-all.json")) as f:
     scaling = json.load(f)
@@ -49,6 +52,8 @@ with open(os.path.join(DATA_DIR, "advanced-ablation.json")) as f:
     ablation = json.load(f)
 with open(os.path.join(DATA_DIR, "agent-task-results.json")) as f:
     agent_task = json.load(f)
+
+TOTAL_OPS = max(len(metrics[b].get("results", [])) for b in metrics)
 
 BACKEND_NAMES = {
     "01-alekhdb": "AlekhDB",
@@ -69,22 +74,37 @@ def fig1_overall_ranking():
         skip = sum(1 for r in metrics[b]["results"] if r.get("status") == "SKIP")
         ok_counts.append(ok)
         skip_counts.append(skip)
-        # Compute score
-        coverage = ok / 14 * 100
+        isFallback = metrics[b].get("extras", {}).get("isFallback", False)
+        coverage = ok / TOTAL_OPS * 100
         ok_results = [r for r in metrics[b]["results"] if r.get("status") == "OK"]
         latencies = [r.get("metrics", {}).get("p50", 0) for r in ok_results if r.get("metrics", {}).get("p50")]
-        avg_lat = sum(latencies) / len(latencies) if latencies else 100
+        recalls = [r.get("metrics", {}).get("recall", 0) for r in ok_results if r.get("metrics", {}).get("recall")]
+        avg_lat = sum(latencies) / len(latencies) if latencies else 0
+        avg_recall = sum(recalls) / len(recalls) if recalls else 0
         latency_score = max(0, 100 - np.log10(avg_lat + 1) * 30) if avg_lat > 0 else 0
-        total = (latency_score * 0.40 + coverage * 0.15 + 100 * 0.10 + 100 * 0.10)
+        correctness_score = avg_recall * 100
+        features_score = coverage
+        db_size = metrics[b].get("extras", {}).get("dbSizeMB", 0)
+        footprint_score = 100 - min(100, db_size * 2)
+        setup_ms = metrics[b].get("extras", {}).get("setupTimeMs", 0)
+        setup_score = max(0, 100 - setup_ms / 1000)
+        fallback_penalty = 50 if isFallback else 0
+        total = max(0, (
+            latency_score * 0.40 +
+            correctness_score * 0.25 +
+            features_score * 0.15 +
+            footprint_score * 0.10 +
+            setup_score * 0.10
+        ) - fallback_penalty)
         scores.append(round(total, 1))
     fig, ax = plt.subplots(figsize=(8, 4.5))
     colors = ["#2E7D32", "#1976D2", "#F57C00", "#C62828", "#6A1B9A"]
     bars = ax.bar([BACKEND_NAMES[b] for b in backends], scores, color=colors)
     for bar, score, ok, skip in zip(bars, scores, ok_counts, skip_counts):
         ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 1,
-                f"{score}\n({ok}/14 OK)", ha="center", va="bottom", fontsize=9)
+                f"{score}\n({ok}/{TOTAL_OPS} OK)", ha="center", va="bottom", fontsize=9)
     ax.set_ylabel("Weighted Score (0-100)")
-    ax.set_title("Overall Ranking: 5-Backend Memory Benchmark\n(22,817-node microsoft/vscode dataset, 14 operations)")
+    ax.set_title(f"Overall Ranking: 5-Backend Memory Benchmark\n(22,817-node microsoft/vscode dataset, {TOTAL_OPS} operations)")
     ax.set_ylim(0, 110)
     plt.tight_layout()
     plt.savefig(os.path.join(FIG_DIR, "fig1-overall-ranking.png"), dpi=150, bbox_inches="tight")
@@ -93,7 +113,7 @@ def fig1_overall_ranking():
     with open(os.path.join(TBL_DIR, "table1-overall-ranking.csv"), "w") as f:
         f.write("backend,score,ops_ok,ops_skip,ops_total\n")
         for b, s, ok, skip in zip(backends, scores, ok_counts, skip_counts):
-            f.write(f"{BACKEND_NAMES[b]},{s},{ok},{skip},14\n")
+            f.write(f"{BACKEND_NAMES[b]},{s},{ok},{skip},{TOTAL_OPS}\n")
     print(f"  fig1-overall-ranking.png + table1 saved")
 
 # === Figure 2: Scaling ===
@@ -233,12 +253,64 @@ def table6_statistical_trials():
                     f.write(f"{BACKEND_NAMES[backend_id]},{op},{s['status']},{s['n']},{s['mean']},{s['stddev']},{s['ci95']},{s['min']},{s['max']}\n")
     print(f"  table6-statistical-trials.csv saved")
 
+# === Figure 6: Experience Knowledge Graph — 4 operations vs competitors ===
+def fig6_knowledge_graph():
+    if TOTAL_OPS < 18:
+        print("  Not 18 ops, skipping fig6")
+        return
+    backends = list(metrics.keys())
+    op_names = {15: "addPrinciple", 16: "addSupersedes", 17: "searchKnowledge", 18: "checkConflict"}
+    fig, axes = plt.subplots(1, 4, figsize=(14, 4))
+    for i, op in enumerate([15, 16, 17, 18]):
+        ax = axes[i]
+        names = []
+        latencies = []
+        colors = []
+        for b in backends:
+            names.append(BACKEND_NAMES[b])
+            r = next((r for r in metrics[b]["results"] if r.get("op") == op), None)
+            if r and r.get("status") == "OK" and r.get("metrics", {}).get("p50"):
+                latencies.append(r["metrics"]["p50"])
+                colors.append("#2E7D32" if b == "01-alekhdb" else "#999999")
+            else:
+                latencies.append(0)
+                colors.append("#cccccc")
+        bars = ax.bar(names, latencies, color=colors)
+        for bar, lat in zip(bars, latencies):
+            if lat > 0:
+                ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.01,
+                        f"{lat:.3f}ms", ha="center", va="bottom", fontsize=8)
+            else:
+                ax.text(bar.get_x() + bar.get_width() / 2, 0.05, "SKIP", ha="center", va="bottom", fontsize=8, color="gray")
+        ax.set_title(f"Op {op}: {op_names[op]}", fontsize=10)
+        ax.set_xticklabels(names, rotation=30, ha="right", fontsize=8)
+        if i == 0:
+            ax.set_ylabel("p50 latency (ms, log scale)")
+        ax.set_yscale("log")
+    plt.suptitle("Experience Knowledge Graph: 4 operations only AlekhDB supports (18-op benchmark)", y=1.02)
+    plt.tight_layout()
+    plt.savefig(os.path.join(FIG_DIR, "fig6-knowledge-graph.png"), dpi=150, bbox_inches="tight")
+    plt.close()
+    with open(os.path.join(TBL_DIR, "table7-knowledge-graph.csv"), "w") as f:
+        f.write("operation,alekhdb_p50_ms,mem0,supermemory,zep_graphiti,letta\n")
+        for op in [15, 16, 17, 18]:
+            row = [op_names[op]]
+            for b in backends:
+                r = next((r for r in metrics[b]["results"] if r.get("op") == op), None)
+                if r and r.get("status") == "OK" and r.get("metrics", {}).get("p50"):
+                    row.append(f"{r['metrics']['p50']:.4f}")
+                else:
+                    row.append("SKIP")
+            f.write(",".join(row) + "\n")
+    print(f"  fig6-knowledge-graph.png + table7 saved")
+
 # === Generate everything ===
 fig1_overall_ranking()
 fig2_scaling()
 fig3_cognitive_decay()
 fig4_ablation()
 fig5_agent_task()
+fig6_knowledge_graph()
 table6_statistical_trials()
 print("\nAll figures and tables generated successfully.")
 print(f"Figures: {FIG_DIR}")

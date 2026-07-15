@@ -196,17 +196,26 @@ Full report: `benchmarks/01-ide-monorepo/reports/04-ranking.md`. Re-run anytime 
 
 A research paper based on this codebase is in progress:
 
-**"AlekhDB: Biological-Inspired, Local-First Memory for Long-Horizon AI Agents"** (target venue: AAAI 2027)
+**"AlekhDB: An Experience Knowledge Graph for Multi-Agent AI Memory"** (target venue: AAAI 2027)
 
-- `paper/paper.md` and `paper/paper.tex` — full paper draft
-- `paper/figures/` — 5 publication-quality figures
-- `paper/tables/` — 6 data tables (CSV)
+The paper introduces the **Experience Knowledge Graph** model — 5 typed knowledge nodes (principle, pattern, constraint, tactic, observation) and 6 typed edges (supersedes, contradicts, supports, dependsOn, appliesTo, triggers) — and demonstrates that this enables multi-agent consistency: a `checkConflict()` pre-action guard prevents 92% of cross-agent contradictions.
+
+- `paper/paper.md` and `paper/paper.tex` — full paper draft (8 pages, AAAI format)
+- `paper/figures/` — 6 publication-quality figures (incl. fig6-knowledge-graph.png for ops 15-18)
+- `paper/tables/` — 7 data tables (CSV) including the knowledge graph benchmark
 - `paper/agent-task/` — long-horizon agent task, ablation, cognitive study
 - `paper/scripts/` — scaling benchmark, statistical trials, figure generation
 - `paper/README.md` — reproducibility guide
 - `arxiv-submission/` — ready-to-upload arXiv package
 
-Headline results: AlekhDB 87.3/100 vs Supermemory 63.9, Letta 52.9, Mem0 41.7, Zep 40.8 on the 5-backend benchmark. 8/9 unique capabilities show drop=1 when ablated. Ebbinghaus decay achieves 100% recall vs uniform TTL 24% on long-horizon retrieval.
+**Headline results (18-op benchmark):**
+- AlekhDB: 84.7/100 weighted score, all 18 ops native
+- Supermemory: 59.3 (12/18 ops)
+- Letta: 50.1 (7/18 ops)
+- Mem0: 41.1 (5/18 ops)
+- Zep/Graphiti: 37.9 (4/18 ops)
+
+AlekhDB is the only backend that supports the 4 Experience Knowledge Graph operations (addPrinciple, addSupersedes, searchKnowledge, checkConflict). All 4 are load-bearing in ablation. Ebbinghaus decay achieves 100% recall vs uniform TTL 24% on long-horizon retrieval.
 
 ## License
 

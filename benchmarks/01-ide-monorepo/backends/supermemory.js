@@ -237,6 +237,12 @@ export async function runSupermemory() {
     results.push(ok(14, m.p50, { opName: OP_NAMES[14], metrics: { ...m, returned: replay.frames?.length || 0 } }));
   }
 
+  // ─── Op 15-18: Experience Knowledge Graph (Supermemory has only generic memories) ──
+  results.push(skip(15, "Supermemory has no first-class principle/pattern/constraint knowledge type — all memories are flat text"));
+  results.push(skip(16, "Supermemory has no typed knowledge edges (supersedes, contradicts) — graph is implicit"));
+  results.push(skip(17, "Supermemory has no type-filtered unified search — only generic memory search"));
+  results.push(skip(18, "Supermemory has no pre-action conflict guard API"));
+
   const totalSetupMs = performance.now() - setupT0;
   writeReport("03-supermemory", results, {
     subtitle: `Local SuperMemory-style REST server (${BASE_URL}). Real HTTP round-trips against an Express-backed versioned DAG.`,

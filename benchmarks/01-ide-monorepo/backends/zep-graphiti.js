@@ -168,6 +168,12 @@ export async function runZepGraphiti() {
   // ─── Op 14: Episodic trace + replay ──────────────────────────────
   results.push(skip(14, "Zep/Graphiti's episode ingestion is the closest concept, but no frame-level append + replay API"));
 
+  // ─── Op 15-18: Experience Knowledge Graph (Zep/Graphiti has no first-class knowledge types) ──
+  results.push(skip(15, "Zep/Graphiti's LLM extraction captures entities/facts but no typed principle/pattern/constraint knowledge"));
+  results.push(skip(16, "Zep/Graphiti has bi-temporal edges but no typed supersedes/contradicts/supports/dependsOn/appliesTo/triggers semantics"));
+  results.push(skip(17, "Zep/Graphiti's search is over episodes/facts — no type-filtered unified knowledge search"));
+  results.push(skip(18, "Zep/Graphiti has no pre-action conflict guard API"));
+
   writeReport("04-zep-graphiti", results, {
     subtitle: `Local Zep/Graphiti-compatible REST server (${BASE_URL}) with Ollama LLM extraction (${process.env.ZEP_LLM || 'qwen3.5:9b'}).`,
     setupTimeMs,

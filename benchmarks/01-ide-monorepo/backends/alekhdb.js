@@ -279,6 +279,37 @@ export async function runAlekhdb() {
     results.push(ok(14, m.p50, { opName: OP_NAMES[14], metrics: { ...m, returned: replay.frames.length } }));
   }
 
+  // ─── Op 15: Add a knowledge principle (Experience Knowledge Graph) ──
+  {
+    const m = timeBatch(() => db.addPrinciple("princ-test", { rule: "Always use parameterized queries", domain: "security", importance: 5 }), 100, 20);
+    results.push(ok(15, m.p50, { opName: "Add a knowledge principle", metrics: m }));
+  }
+
+  // ─── Op 16: Add a supersedes edge (multi-agent consistency) ──────────
+  {
+    db.addPrinciple("princ-old", { rule: "Use ORM for all DB", domain: "database", importance: 4 });
+    db.addPrinciple("princ-new", { rule: "Use raw SQL with prepared statements", domain: "database", importance: 5 });
+    db.addSupersedes("princ-new", "princ-old");
+    const m = timeBatch(() => db.addSupersedes("princ-new2", "princ-old2", { reason: "policy update" }), 100, 20);
+    results.push(ok(16, m.p50, { opName: "Add supersedes edge", metrics: m }));
+  }
+
+  // ─── Op 17: searchKnowledge (unified search across knowledge types) ──
+  {
+    const m = await timeBatchAsync(async () => {
+      return db.searchKnowledge({ types: ["principle", "constraint"], scope: "branch:feat/auth", status: "active" });
+    }, 50, 10);
+    const sample = db.searchKnowledge({ types: ["principle", "constraint"], scope: "branch:feat/auth" });
+    results.push(ok(17, m.p50, { opName: "Unified knowledge search", metrics: { ...m, returned: sample.length } }));
+  }
+
+  // ─── Op 18: checkConflict (pre-action guard for multi-agent safety) ─
+  {
+    const m = timeBatch(() => db.checkConflict({ type: "decision", data: { chosen: "MySQL", domain: "database" } }), 100, 20);
+    const sample = db.checkConflict({ type: "decision", data: { chosen: "PostgreSQL", domain: "database" } });
+    results.push(ok(18, m.p50, { opName: "Pre-action conflict guard", metrics: { ...m, returned: sample.length } }));
+  }
+
   const memUsageAfter = process.memoryUsage();
   const heapDeltaMB = +((memUsageAfter.heapUsed - memUsageBefore.heapUsed) / (1024 * 1024)).toFixed(2);
   let dbSizeMB = 0;
